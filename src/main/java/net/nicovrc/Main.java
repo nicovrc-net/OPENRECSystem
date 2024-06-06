@@ -54,6 +54,21 @@ public class Main {
 
                     String httpResponse = "";
                     byte[] httpResponseByte = null;
+
+                    if (request.equals("/check.mp4")){
+
+                        httpResponse = "HTTP/"+ver+" 404 Not Found\nContent-Type: text/plain; charset=utf-8\n\n404";
+                        out.write(httpResponse.getBytes(StandardCharsets.UTF_8));
+                        out.flush();
+
+                        in.close();
+                        out.close();
+                        sock.close();
+
+                        return;
+                    }
+
+
                     OkHttpClient client = new OkHttpClient();
                     Request build = new Request.Builder()
                             .url("https://d3cfw2mckicdfw.cloudfront.net"+request)
