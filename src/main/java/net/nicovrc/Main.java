@@ -20,6 +20,7 @@ public class Main {
 
         ServerSocket svSock = new ServerSocket(9999);
         while (true){
+            System.gc();
             Socket sock = svSock.accept();
             new Thread(() -> {
                 try {
