@@ -68,10 +68,12 @@ public class Main {
                         return;
                     }
 
+                    String[] split = request.split("&host=");
 
+                    //System.out.println("https://"+split[1]+split[0]);
                     OkHttpClient client = new OkHttpClient();
                     Request build = new Request.Builder()
-                            .url("https://d3cfw2mckicdfw.cloudfront.net"+request)
+                            .url("https://"+split[1]+split[0])
                             .addHeader("Origin", "https://www.openrec.tv")
                             .addHeader("Referer", "https://www.openrec.tv/")
                             .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0 nicovrc/2.0")
