@@ -76,7 +76,7 @@ public class Main {
                             .url("https://"+split[1]+(split[0].startsWith("/") ? "" : "/")+split[0])
                             .addHeader("Origin", "https://www.openrec.tv")
                             .addHeader("Referer", "https://www.openrec.tv/")
-                            .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0 nicovrc/2.0")
+                            .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.0) Gecko/20100101 Firefox/127.0 nicovrc/2.0")
                             .build();
 
                     Response response = client.newCall(build).execute();
