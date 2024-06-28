@@ -70,7 +70,7 @@ public class Main {
 
                     String[] split = request.split("&host=");
 
-                    System.out.println("https://"+split[1]+(split[0].startsWith("/") ? "" : "/")+split[0]);
+                    //System.out.println("https://"+split[1]+(split[0].startsWith("/") ? "" : "/")+split[0]);
                     OkHttpClient client = new OkHttpClient();
                     Request build = new Request.Builder()
                             .url("https://"+split[1]+(split[0].startsWith("/") ? "" : "/")+split[0])
