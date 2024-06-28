@@ -70,10 +70,10 @@ public class Main {
 
                     String[] split = request.split("&host=");
 
-                    //System.out.println("https://"+split[1]+split[0]);
+                    System.out.println("https://"+split[1]+(split[0].startsWith("/") ? "" : "/")+split[0]);
                     OkHttpClient client = new OkHttpClient();
                     Request build = new Request.Builder()
-                            .url("https://"+split[1]+split[0])
+                            .url("https://"+split[1]+(split[0].startsWith("/") ? "" : "/")+split[0])
                             .addHeader("Origin", "https://www.openrec.tv")
                             .addHeader("Referer", "https://www.openrec.tv/")
                             .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0 nicovrc/2.0")
@@ -86,7 +86,13 @@ public class Main {
 
                         if (response.code() == 200){
                             httpResponse = "HTTP/"+ver+" 200 OK\nContent-Type: "+response.header("Content-Type") + "\n\n";
-                            httpResponseByte = response.body().bytes();
+                            if (split[0].endsWith("m3u8")){
+                                httpResponseByte = response.body().string().replaceAll("\\.m3u8", ".m3u8&host="+split[1]).replaceAll("\\.ts", ".ts&host="+split[1]).getBytes(StandardCharsets.UTF_8);
+                            } else {
+                                httpResponseByte = response.body().bytes();
+                            }
+
+
                         } else {
                             httpResponse = "HTTP/"+ver+" 404 Not Found\nContent-Type: text/plain; charset=utf-8\n\n404";
                         }
